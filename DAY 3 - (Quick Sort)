@@ -1,0 +1,55 @@
+// DAY 3
+
+// Quick sort
+
+
+#include<bits/stdc++.h>
+using namespace std;
+void swap(int arr[], int i ,int j)
+{
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+int partition(int arr[], int l , int r)
+{
+    int pivot = arr[r]; // last element is taken as the pivot
+    int i = l - 1;
+
+    for(int j = l ; j < r ; j++)
+    {
+        if(arr[j] < pivot)
+        {
+            i++; // if less the increment i
+            swap(arr,i,j);
+        }
+    }
+    swap(arr,i+1,r);
+    return (i+1);
+}
+void Quick_sort(int arr[], int l, int r) // l - first index , r  - last index
+{
+    if(l < r)
+    {
+        int pi = partition(arr,l,r);
+        Quick_sort(arr,l,pi-1);
+        Quick_sort(arr,pi+1,r);
+    }
+}
+int main()
+{
+    int arr[7] = {6,3,9,5,2,8,7};
+    Quick_sort(arr,0,6); // r should be size - 1
+    cout<<"\nSORTED ARRAY USING QUICK SORT : ";
+    for(int i = 0 ; i < 7; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<"\n\n";
+
+    return 0 ;
+}
+
+
+//  Average case time complexity - O(nlogn)
+//  Worst case time complexity - 0(n^2)
